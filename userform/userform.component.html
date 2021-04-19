@@ -1,17 +1,21 @@
 <h3>{{title}}</h3>
 <input [(ngModel)]='user.name'>
 <input [(ngModel)]='user.age' placeholder="age" type='number'>
-<input type="date" [(ngModel)] = 'user.dob'>
+<input type="date" [(ngModel)]='user.dob'>
 <button (click)='save()'>Save</button>
-<table *ngIf='userArray.length'>
-  <thead><td>FirstName</td>
-  <td>Age</td>
-<td>DOB</td></thead>
+<table>
+  <thead>
+    <td>FirstName</td>
+    <td>Age</td>
+    <td>DOB</td>
+    <td>Delete Button</td>
+  </thead>
   <tbody>
-    <tr *ngFor='let user1 of userArray'>
-      <td>{{user1.name}}</td>
-      <td>{{user1.age}}</td>
+    <tr *ngFor='let user1 of userArray; index as i'>
+      <td><a [href]='user1.name'>{{user1.name}}</a></td>
+      <td >{{user1.age}}</td>
       <td>{{user1.dob}}</td>
+      <td><button (click)='this.deleteUser(user1.id, i)'>X</button></td>
     </tr>
   </tbody>
 </table>
