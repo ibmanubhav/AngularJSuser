@@ -14,10 +14,22 @@ export class UserformComponent implements OnInit { //controller
   userArray: any;
   //age:number=25;
   constructor(private userService: UserService) { }
+
+
+
   deleteUser(id:number, index:number){
     const observable = this.userService.delete(id)
     observable.subscribe(response=> this.userArray.splice(index,1))
   }
+
+
+  searchByName(){
+    //const nameValue:string =
+    //const observable = this.userService.searchByName(nameValue);
+  }
+
+
+
   save() {
     const observable = this.userService.save(this.user);
     observable.subscribe(response => { // SUCCESS FUNCTION
@@ -25,12 +37,14 @@ export class UserformComponent implements OnInit { //controller
       this.user.id=response;
       alert('user added')
       this.userArray.push(Object.assign({}, this.user));
-    },
-      error => {
+      this.user = new User();
+      },
+
+
+    error => {
         console.log(error);   //ERROR FUNCTION
         alert('error happened')
       })
-
     //  console.log('working');
     // console.log(this.user.firstname);
     //this.user.firstname='John';
